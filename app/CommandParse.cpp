@@ -23,11 +23,7 @@ namespace {
             if(isspace(input.at(i))) // check at each char if its a space
                 amountOfSpaces++; // increment the amount we have
         }
-        if(input.length() == amountOfSpaces) { // length of string matches amount of spaces
-            return true; // our entire string is spaces or a newline
-        } else {
-            return false; // we have words!
-        }
+        return (input.length() == amountOfSpaces);
     }
 }
 
@@ -132,6 +128,7 @@ void CommandParse::getDebugCommand(const std::string& command, const std::string
 // otherwise return false
 bool CommandParse::isValidUserCommand(const std::string& command, const std::string& actionOne, const std::string& actionTwo) const
 {
+
     if((command == "CREATE") && ((!actionOne.empty() && actionOne != "COUNT")) && (!actionTwo.empty())) { // CREATE
         return true;
     } else if ((command == "LOGIN") && (actionOne != "COUNT") && (!actionOne.empty()) && (!actionTwo.empty())) { // LOGIN
@@ -160,16 +157,11 @@ bool CommandParse::isValidDebugCommand(const std::string& command, const std::st
         return true;
     } else if((command == "MAX") && (actionOne == "BUCKET") && (actionTwo == "SIZE")) { // MAX BUCKET SIZE
         return true;
-    } else {
-        return false;
     }
+    return false;
 }
 
 /* Special cases: QUIT */
 bool CommandParse::quitProgram(const std::string& command) const {
-    if(command == "QUIT"){
-        return true;
-    } else {
-        return false;
-    }
+    return (command == "QUIT");
 }
