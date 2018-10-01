@@ -96,6 +96,14 @@ TEST(HashMap_SanityChecks, canAddKeyValuePair)
    hm1.add(key, value);
 }
 
+TEST(HashMap_SanityChecks, canAddSameKeyValuePair)
+{
+    HashMap hm1;
+    std::string key{"ding"};
+    std::string value{"ding"};
+    hm1.add(key,value);
+}
+
 
 TEST(HashMap_SanityChecks, canRemove)
 {
